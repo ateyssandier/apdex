@@ -1,0 +1,16 @@
+.host-tile {
+    font-size: 16px;
+    line-height: 1.2em;
+    font-family: Helvetica, sans-serif; /* HelveticaNeue/HelveticaNeue-Bold cost money */
+
+    padding: 30px;
+    margin: 30px 0 0 30px;
+    width: 375px;
+    float: left;
+    background: #FFF;
+}
+
+.host-tile-name {
+    color: #000;
+    font-weight: bold;
+}

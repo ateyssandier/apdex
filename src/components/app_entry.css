@@ -1,0 +1,11 @@
+.app-entry {
+    margin-top: 23px;
+    color: #4A4A4A;
+}
+
+.app-entry-apdex {
+    margin-right: 20px;
+    font-size: 13px;
+    height: 100%;
+    opacity: 0.62;
+}

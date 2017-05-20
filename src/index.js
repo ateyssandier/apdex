@@ -1,5 +1,6 @@
 import './index.css'
 import hostAppData from './host_app_data'
+import HostTile from './components/host_tile'
 
 const appMap = hostAppData.reduce((acc, app) => {
     acc[app.name] = app
@@ -23,15 +24,19 @@ Object.keys(bucketedByHost).forEach(host => {
     bucketedByHost[host].order.sort((a, b) => appMap[b].apdex - appMap[a].apdex)
 })
 
-function take25(arr) {
-    return arr.slice(0, 25)
+function genTaker(n) {
+    return arr => arr.slice(0, n)
 }
+
+const take25 = genTaker(25)
+const take5 = genTaker(5)
 
 // return top 25 apps for a given host
 function getTopAppsByHost(hostName) {
     return take25(bucketedByHost[hostName].order).map(name => appMap[name])
 }
 
+// for a given app name removes corresponding app from all hosts
 function removeAppFromHosts(appName) {
     Object.keys(bucketedByHost).forEach(host => {
         // return early if a given host does not have an app with given name
@@ -58,6 +63,7 @@ function validateApp(obj) {
     return Object.keys(fieldValidators).every(key => obj[key] && fieldValidators[key](obj[key]))
 }
 
+// for a new given app adds app to all hosts
 function addAppToHosts(app) {
     // if app invalid, do nothing
     if (!validateApp(app)) return
@@ -77,4 +83,20 @@ function addAppToHosts(app) {
     })
 }
 
-debugger
+function appendToRoot(htmlStr) {
+    let root = document.getElementById('root')
+
+    root.innerHTML += htmlStr
+}
+
+function render() {
+    Object.keys(bucketedByHost).forEach(hostName => {
+        const host = bucketedByHost[hostName]
+        const hydratedApps = take5(host.order).map(name => appMap[name])
+        const htmlStr = HostTile(hostName, hydratedApps)
+
+        appendToRoot(htmlStr)
+    })
+}
+
+render()
