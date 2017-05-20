@@ -83,19 +83,19 @@ function addAppToHosts(app) {
     })
 }
 
-function appendToRoot(htmlStr) {
+function appendToRoot(node) {
     let root = document.getElementById('root')
 
-    root.innerHTML += htmlStr
+    root.appendChild(node)
 }
 
 function render() {
     Object.keys(bucketedByHost).forEach(hostName => {
         const host = bucketedByHost[hostName]
         const hydratedApps = take5(host.order).map(name => appMap[name])
-        const htmlStr = HostTile(hostName, hydratedApps)
+        const node = HostTile(hostName, hydratedApps)
 
-        appendToRoot(htmlStr)
+        appendToRoot(node)
     })
 }
 
