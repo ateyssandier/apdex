@@ -37,6 +37,12 @@ class Host {
     sortAppsByApdex() {
         this.order.sort((a, b) => this.getApp(b).apdex - this.getApp(a).apdex)
     }
+
+    getTopNApps(n) {
+        const topNApps = this.order.slice(0, n)
+
+        return topNApps.map(appName => this.getApp(appName))
+    }
 }
 
 export default Host

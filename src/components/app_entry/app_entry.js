@@ -1,4 +1,4 @@
-import createEl from '../renderer'
+import { createEl } from '../../renderer'
 import './app_entry.css'
 
 function AppEntry({ name, apdex, version }) {

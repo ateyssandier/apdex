@@ -1,9 +1,7 @@
 ## Folder Structure
 
-After creation, your project should look like this:
-
 ```
-my-app/
+root/
   README.md
   node_modules/
   package.json
@@ -11,8 +9,10 @@ my-app/
     index.html
     favicon.ico
   src/
-    index.css
-    index.js
+    components/
+    models/
+    main.css
+    main.js
 ```
 
 ## Available Scripts

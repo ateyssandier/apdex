@@ -115,7 +115,10 @@ module.exports = {
     'no-undef': 'warn',
     'no-unexpected-multiline': 'warn',
     'no-unreachable': 'warn',
-    'no-unused-expressions': 'warn',
+    'no-unused-expressions': ['warn', {
+      "allowShortCircuit": true,
+      "allowTernary": true
+    }],
     'no-unused-labels': 'warn',
     'no-unused-vars': [1, { vars: 'local', args: 'none' }],
     'no-use-before-define': ['warn', 'nofunc'],

@@ -12,7 +12,7 @@ function appendAsNode(node, child) {
     return node.appendChild(toAppend)
 }
 
-function createEl({ tagName, handlers={}, attrs={} }, ...children) {
+export function createEl({ tagName, handlers={}, attrs={} }, ...children) {
     const el = document.createElement(tagName)
 
     Object.keys(handlers).forEach(eventName => el.addEventListener(eventName, handlers[eventName]))
@@ -23,5 +23,3 @@ function createEl({ tagName, handlers={}, attrs={} }, ...children) {
 
     return el
 }
-
-export default createEl

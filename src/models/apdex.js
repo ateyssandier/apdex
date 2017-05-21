@@ -1,8 +1,6 @@
 import App from './app'
 import Host from './host'
 
-import { take25 } from '../utils'
-
 class Apdex {
     constructor(hostAppData) {
         this.appMap = this.buildAppMap(hostAppData)
@@ -10,6 +8,7 @@ class Apdex {
         this.sortHostApps()
     }
 
+    // O(n)
     buildAppMap(hostAppData) {
         return hostAppData.reduce((acc, app) => {
             acc[app.name] = new App(app)
@@ -18,6 +17,7 @@ class Apdex {
         }, {})
     }
 
+    // O(n)
     buildHostMap(hostAppData) {
         return hostAppData.reduce((acc, app) => {
             // create a bucket for each host, and add the app to the bucket
@@ -30,6 +30,7 @@ class Apdex {
         }, {})
     }
 
+    // O(n log n)
     sortHostApps() {
         this.getHosts().forEach(host => host.sortAppsByApdex())
     }
@@ -46,10 +47,18 @@ class Apdex {
         return Object.keys(this.hostMap).map(hostName => this.getHost(hostName))
     }
 
+    // O(1)
     getTopAppsByHost(hostName) {
         const host = this.getHost(hostName)
 
-        return take25(host.order).map(appName => this.getApp(appName))
+        return host.getTopNApps(25)
+    }
+
+    getHostTiles() {
+        return this.getHosts().map(host => ({
+            name: host.name,
+            top5: host.getTopNApps(5),
+        }))
     }
 
     removeAppFromHosts(appName) {

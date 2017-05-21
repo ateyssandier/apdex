@@ -1,6 +1,7 @@
-import createEl from '../renderer'
-import AppEntry from './app_entry'
+import { createEl } from '../../renderer'
 import './host_tile.css'
+
+import { AppEntry } from '../index'
 
 function HostTile(hostName, apps) {
     return (
@@ -14,4 +15,3 @@ function HostTile(hostName, apps) {
 }
 
 export default HostTile
-
