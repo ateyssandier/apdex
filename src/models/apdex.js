@@ -30,7 +30,7 @@ class Apdex {
         }, {})
     }
 
-    // O(n log n)
+    // O(n log n) * see './host.js'
     sortHostApps() {
         this.getHosts().forEach(host => host.sortAppsByApdex())
     }

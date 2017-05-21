@@ -34,6 +34,14 @@ class Host {
         this.order = this.order.filter(name => name !== appName)
     }
 
+    // O(n log n) (generally)
+    // The ECMAScript standard does not specify which algorithm a `Array.sort` must use.
+
+    // Chrome and Webkit implement quicksort for numerical comparisons, which is generally O(n log n)
+    // and faster than stable sorts though its worst case scenario is 0(n^2)
+    // Firefox uses mergesort exclusively so it will be O(n log n)
+    // IE is closed source, but I have read it is 'stable' and therefore likely mergesort and likely 0(n log n)
+
     sortAppsByApdex() {
         this.order.sort((a, b) => this.getApp(b).apdex - this.getApp(a).apdex)
     }
