@@ -6,6 +6,10 @@
     padding: 30px;
     margin: 30px 0 0 30px;
     background: #FFF;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .host-tile-name {

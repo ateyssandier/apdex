@@ -1,0 +1,22 @@
+.title-bar {
+    margin: 30px 0 0 30px;
+    color: #000;
+    line-height: 1.2em;
+}
+
+.title-bar-title {
+    font-size: 35px;
+}
+
+.title-bar-user {
+    font-size: 18px;
+    margin-left: 16px;
+}
+
+.show-as-list {
+    margin-left: 30px;
+}
+
+.show-as-list-label {
+    font-size: 16px;
+}

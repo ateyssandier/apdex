@@ -1,9 +1,5 @@
 import createEl from '../renderer'
-import './host_tile.css'
-
-function toggleClass(el, className) {
-    el.classList.toggle(className)
-}
+import './title_bar.css'
 
 function TitleBar() {
     const title = 'Apps By Host'
@@ -11,15 +7,15 @@ function TitleBar() {
     const onClick = () => {
         const container = document.getElementById('host-tile-container')
 
-        toggleClass(container, 'list-layout')
+        container.classList.toggle('list-layout')
     }
 
     return (
         createEl({ tagName: 'div', attrs: { class: 'title-bar' } },
             createEl({ tagName: 'span', attrs: { class: 'title-bar-title' } }, title),
             createEl({ tagName: 'span', attrs: { class: 'title-bar-user' } }, `for user ${username}`),
-            createEl({ tagName: 'input', attrs: { type: 'checkbox', name: 'show-as-list' }, handlers: { click: onClick } }),
-            createEl({ tagName: 'label', attrs: { for: 'show-as-list' } }, 'Show as List')
+            createEl({ tagName: 'input', attrs: { class: 'show-as-list', type: 'checkbox', name: 'show-as-list' }, handlers: { click: onClick } }),
+            createEl({ tagName: 'label', attrs: { class: 'show-as-list-label', for: 'show-as-list' } }, 'Show as list')
 
         )
     )
