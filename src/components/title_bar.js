@@ -14,8 +14,8 @@ function TitleBar() {
         createEl({ tagName: 'div', attrs: { class: 'title-bar' } },
             createEl({ tagName: 'span', attrs: { class: 'title-bar-title' } }, title),
             createEl({ tagName: 'span', attrs: { class: 'title-bar-user' } }, `for user ${username}`),
-            createEl({ tagName: 'input', attrs: { class: 'show-as-list', type: 'checkbox', name: 'show-as-list' }, handlers: { click: onClick } }),
-            createEl({ tagName: 'label', attrs: { class: 'show-as-list-label', for: 'show-as-list' } }, 'Show as list')
+            createEl({ tagName: 'input', attrs: { class: 'show-as-list__input', type: 'checkbox', name: 'show-as-list' }, handlers: { click: onClick } }),
+            createEl({ tagName: 'label', attrs: { class: 'show-as-list__label', for: 'show-as-list' } }, 'Show as list')
 
         )
     )

@@ -2,6 +2,12 @@
     display: flex;
     margin-top: 23px;
     color: #4A4A4A;
+
+}
+
+.app-entry-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .app-entry-apdex {

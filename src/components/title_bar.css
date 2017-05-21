@@ -13,10 +13,11 @@
     margin-left: 16px;
 }
 
-.show-as-list {
+.show-as-list__input {
     margin-left: 30px;
+    cursor: pointer;
 }
 
-.show-as-list-label {
+.show-as-list__label {
     font-size: 16px;
 }
