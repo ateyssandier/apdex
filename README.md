@@ -41,6 +41,8 @@ We then have the 3 main algorithms:
   Accordingly, `addAppToHosts` and `removeAppFromHosts` could then be implremented in O(n),
   since each hosts sorted app list is of constant size (25).
 
+  See the `linear` branch for an implmentation in O(n)
+
 ## Folder Structure
 
 ```
