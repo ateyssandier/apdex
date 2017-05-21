@@ -23,7 +23,7 @@ class Host {
         this.order.splice(appIndex, 0, app.name)
 
         // add the host to the app host list
-        app.addHostName(this.name)
+        this.getApp(app.name).addHostName(this.name)
     }
 
     removeApp(appName) {

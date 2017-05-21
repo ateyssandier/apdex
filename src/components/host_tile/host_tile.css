@@ -16,6 +16,7 @@
     font-weight: bold;
 }
 
+/* fix for IE */
 .list-layout .host-tile {
     flex-basis: auto;
 }
