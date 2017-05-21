@@ -38,8 +38,8 @@ We then have the 3 main algorithms:
 * If said requirement was removed, we could achieve O(n) time, by simply selecting
   and moving the top rated app into another list 25 times.
 
-  Accordingly, `addAppToHosts` and `removeAppFromHosts` could be implremented in O(n),
-  since our new sorted list is of constant size (25).
+  Accordingly, `addAppToHosts` and `removeAppFromHosts` could then be implremented in O(n),
+  since each hosts sorted app list is of constant size (25).
 
 ## Folder Structure
 
