@@ -17,7 +17,7 @@ Open your terminal and run the follow commands in sequence:
 
 ## Runtime Complexity
 
-Based on the assumed requirement all apps must be sorted per host (not just the top 25),
+Based on the assumed requirement* all apps must be sorted per host (not just the top 25),
 the algorithm in place can be defined by the following steps:
 
 1. Create a dictionary of apps keyed by app name (Object<string, App>) -- O(n)
@@ -25,7 +25,7 @@ the algorithm in place can be defined by the following steps:
 2. Create a dictionary of hosts keyed by host name (Object<string, Host>),
    bucketing the apps into their respective hosts -- O(n)
 
-3. Sort the app lists of each host -- (O(n log n))
+3. Sort the app lists of each host -- O(n log n)
 
 We then have the 3 main algorithms:
 
@@ -34,6 +34,12 @@ We then have the 3 main algorithms:
 `removeAppFromHosts` is O(n) because we have to remove the item from the app list
 
 `addAppToHosts` is O(n) because we have to insert the item into the app list
+
+* If said requirement was removed, we could achieve O(n) time, by simply selecting
+  and moving the top rated app into another list 25 times.
+
+  Accordingly, `addAppToHosts` and `removeAppFromHosts` could be implremented in O(n),
+  since our new sorted list is of constant size (25).
 
 ## Folder Structure
 
