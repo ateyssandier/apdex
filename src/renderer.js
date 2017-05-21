@@ -1,4 +1,10 @@
-function appendToNode(node, child) {
+export function appendToRoot(...nodes) {
+    let root = document.getElementById('root')
+
+    nodes.forEach(node => root.appendChild(node))
+}
+
+function appendAsNode(node, child) {
     const toAppend = child instanceof HTMLElement
         ? child
         : document.createTextNode(`${child}`)
@@ -13,7 +19,7 @@ function createEl({ tagName, handlers={}, attrs={} }, ...children) {
 
     Object.keys(attrs).forEach(attr => el.setAttribute(attr, attrs[attr]))
 
-    children.forEach(child => appendToNode(el, child))
+    children.forEach(child => appendAsNode(el, child))
 
     return el
 }

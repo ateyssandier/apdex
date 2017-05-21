@@ -1,0 +1,15 @@
+.host-tile-row {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-right: 30px;
+}
+
+.host-tile-row:last-child {
+  margin-bottom: 30px;
+}
+
+.list-layout .host-tile-row {
+  display: flex;
+  flex-direction: column;
+}
