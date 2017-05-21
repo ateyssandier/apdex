@@ -34,7 +34,7 @@ class Host {
         this.order = this.order.filter(name => name !== appName)
     }
 
-    // Assumption: the host's entire application list has to be ordered by apdex*
+    // Assumption: the host's entire application list has to be ordered by apdex* (see README)
     //
     // `sortAppsByApdex` runs in O(n log n) (generally)
     // The ECMAScript standard does not specify which algorithm a `Array.sort` must use.
@@ -45,7 +45,7 @@ class Host {
     // IE is closed source, but I have read it is 'stable' and therefore likely mergesort and likely 0(n log n)
 
     // *IF the host's entire application list did not have to be ordered by apdex, we could achieve O(n),
-    // by only grabbing the top 25 rated apps
+    // by only selecting the top 25 rated apps
     sortAppsByApdex() {
         this.order.sort((a, b) => this.getApp(b).apdex - this.getApp(a).apdex)
     }
