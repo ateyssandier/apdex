@@ -3,4 +3,15 @@ body {
   padding: 0;
   font-family: Helvetica, sans-serif;
   background: #F5F5F5;
+  max-width: 840px;
+}
+
+.host-tile-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-layout .host-tile-row {
+  display: flex;
+  flex-direction: column;
 }

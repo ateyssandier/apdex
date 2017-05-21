@@ -1,4 +1,5 @@
 .app-entry {
+    display: flex;
     margin-top: 23px;
     color: #4A4A4A;
 }

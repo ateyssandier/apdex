@@ -1,6 +1,8 @@
 import './index.css'
 import hostAppData from './host_app_data'
 import HostTile from './components/host_tile'
+import TitleBar from './components/title_bar'
+import createEl from './renderer'
 
 const appMap = hostAppData.reduce((acc, app) => {
     acc[app.name] = app
@@ -90,13 +92,28 @@ function appendToRoot(node) {
 }
 
 function render() {
-    Object.keys(bucketedByHost).forEach(hostName => {
-        const host = bucketedByHost[hostName]
-        const hydratedApps = take5(host.order).map(name => appMap[name])
-        const node = HostTile(hostName, hydratedApps)
+    const rows = Object.keys(bucketedByHost).reduce((acc, hostName, i) => {
+        i % 2 === 0
+            ? acc.push([hostName])
+            : acc[acc.length-1].push(hostName)
 
-        appendToRoot(node)
-    })
+        return acc
+    }, [])
+
+    const hostTileContainer = createEl({ tagName: 'div', 'attrs': { id: 'host-tile-container' } },
+        ...rows.map(row => createEl({ tagName: 'div', attrs: { class: 'host-tile-row' } },
+                ...row.map(hostName => {
+                    const host = bucketedByHost[hostName]
+                    const hydratedApps = take5(host.order).map(name => appMap[name])
+
+                    return HostTile(hostName, hydratedApps)
+                })
+            )
+        )
+    )
+
+    appendToRoot(TitleBar())
+    appendToRoot(hostTileContainer)
 }
 
 render()
