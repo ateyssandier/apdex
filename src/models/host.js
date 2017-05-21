@@ -2,7 +2,7 @@ class Host {
     constructor(data = {}) {
         this.name = data.name || ''
         this.order = data.order || []
-        this.apps = data.apps || []
+        this.apps = data.apps || {}
         this.getApp = data.getApp || null
     }
 
