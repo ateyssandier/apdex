@@ -15,3 +15,7 @@
     color: #000;
     font-weight: bold;
 }
+
+.list-layout .host-tile {
+    flex-basis: auto;
+}
