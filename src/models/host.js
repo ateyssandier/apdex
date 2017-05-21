@@ -1,57 +1,78 @@
 class Host {
     constructor(data = {}) {
         this.name = data.name || ''
-        this.order = data.order || []
-        this.apps = data.apps || {}
+        this.top25 = data.top25 || []
+        this.unsortedApps = data.unsortedApps || []
         this.getApp = data.getApp || null
     }
 
     addApp(app) {
-        // return early if app already present
-        if (this.apps[app.name]) return
+        if(!app) return
 
-        this.order.push(app.name)
-        this.apps[app.name] = app.name
+        this.unsortedApps.push(app.name)
+    }
+
+    appendTopAppName(appName) {
+        if(!appName) return
+
+        this.top25.push(appName)
     }
 
     insertApp(app) {
-        // return early if app already present
-        if (this.apps[app.name]) return
+        if(!app) return
 
-        // insert at appropriate index
-        const appIndex = this.order.findIndex(name => this.getApp(name).apdex < app.apdex)
-        this.order.splice(appIndex, 0, app.name)
+        // insert at appropriate index if top 25
+        const appIndex = this.top25.findIndex(name => this.getApp(name).apdex < app.apdex)
+        appIndex !== -1
+            ? this.top25.splice(appIndex, 0, app.name)
+            : this.unsortedApps.push(app.name)
 
         // add the host to the app host list
         this.getApp(app.name).addHostName(this.name)
     }
 
-    removeApp(appName) {
-        // return early if app not present
-        if (!this.apps[appName]) return
+    selectTopUnsortedAppName() {
+        if (this.unsortedApps.length < 1) return
 
-        delete this.apps[appName]
-        this.order = this.order.filter(name => name !== appName)
+        const getHigherApdex = (a, b) => this.getApp(a).apdex > this.getApp(b).apdex ? a : b
+
+        return this.unsortedApps.reduce(getHigherApdex)
     }
 
-    // Assumption: the host's entire application list has to be ordered by apdex* (see README)
+    removeAppByName(appName) {
+        if (!this.top25.includes(appName)) {
+            this.unsortedApps = this.unsortedApps.filter(name => name !== appName)
+        } else {
+            this.top25 = this.top25.filter(name => name !== appName)
+            const nextTopApp = this.selectTopUnsortedAppName()
+
+            this.removeAppByName(nextTopApp)
+
+            this.appendTopAppName(nextTopApp)
+        }
+
+        const app = this.getApp(appName)
+        app && app.removeHostName(this.name)
+    }
+
+    // Assumption: the host's entire application list does not have to be ordered by apdex* (see README)
     //
-    // `sortAppsByApdex` runs in O(n log n) (generally)
-    // The ECMAScript standard does not specify which algorithm a `Array.sort` must use.
+    // `sortTop25AppsByApdex` runs in O(n)
 
-    // Chrome and Webkit implement quicksort for numerical comparisons, which is generally O(n log n)
-    // and faster than stable sorts though its worst case scenario is 0(n^2)
-    // Firefox uses mergesort exclusively so it will be O(n log n)
-    // IE is closed source, but I have read it is 'stable' and therefore likely mergesort and likely 0(n log n)
+    // *IF the host's entire application list had to be ordered by apdex, we would have to sort
+    // the whole list and thus arrive at O(n log n)
+    sortTop25AppsByApdex() {
+        for (let i = 0; i < 25; i++) {
+            const topApp = this.selectTopUnsortedAppName()
+            if (!topApp) return
 
-    // *IF the host's entire application list did not have to be ordered by apdex, we could achieve O(n),
-    // by only selecting the top 25 rated apps
-    sortAppsByApdex() {
-        this.order.sort((a, b) => this.getApp(b).apdex - this.getApp(a).apdex)
+            this.removeAppByName(topApp)
+            this.appendTopAppName(topApp)
+        }
     }
 
     getTopNApps(n) {
-        const topNApps = this.order.slice(0, n)
+        const topNApps = this.top25.slice(0, n)
 
         return topNApps.map(appName => this.getApp(appName))
     }

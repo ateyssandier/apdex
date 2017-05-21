@@ -5,7 +5,7 @@ class Apdex {
     constructor(hostAppData) {
         this.appMap = this.buildAppMap(hostAppData)
         this.hostMap = this.buildHostMap(hostAppData)
-        this.sortHostApps()
+        this.sortTop25HostApps()
     }
 
     // O(n)
@@ -30,9 +30,9 @@ class Apdex {
         }, {})
     }
 
-    // O(n log n) * see './host.js'
-    sortHostApps() {
-        this.getHosts().forEach(host => host.sortAppsByApdex())
+    // O(n) * see README
+    sortTop25HostApps() {
+        this.getHosts().forEach(host => host.sortTop25AppsByApdex())
     }
 
     getApp(appName) {
@@ -62,7 +62,7 @@ class Apdex {
     }
 
     removeAppFromHosts(appName) {
-        this.getHosts().forEach(host => host.removeApp(appName))
+        this.getHosts().forEach(host => host.removeAppByName(appName))
     }
 
     addApp(app) {

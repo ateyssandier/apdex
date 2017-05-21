@@ -16,7 +16,6 @@ describe('Apdex', () => {
         const topAppsForHost1 = apdex.getTopAppsByHost('host1')
         const topAppsForHost2 = apdex.getTopAppsByHost('host2')
 
-
         expect(topAppsForHost1).to.deep.equal([ app1, app4, app2 ])
         expect(topAppsForHost2).to.deep.equal([ app4, app2, app3 ])
     })

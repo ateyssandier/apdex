@@ -13,6 +13,12 @@ class App {
         this.host.push(hostName)
     }
 
+    removeHostName(hostName) {
+        if (this.host.includes(hostName)) return
+
+        this.host = this.host.filter(name => name !== hostName)
+    }
+
 }
 
 export default App
