@@ -27,6 +27,8 @@ the algorithm in place can be defined by the following steps:
 
 3. Create a list of the top 25 apps per host -- O(n)
 
+Overall complexity: O(n)
+
 We then have the 3 main methods:
 
 `getTopAppsByHost` is O(1) because the top 25 apps are already sorted
@@ -35,7 +37,7 @@ We then have the 3 main methods:
 
 `addAppToHosts` is O(1) because we only have to check agaisnt the top 25 apps
 
-** SEE `master` branch for a version where the entire app list is kept sorted
+** SEE `master` branch for a version where the entire app list is kept sorted -- O(n log n)
 
 ## Folder Structure
 
