@@ -27,7 +27,7 @@ the algorithm in place can be defined by the following steps:
 
 3. Create a list of the top 25 apps per host -- O(n)
 
-We then have the 3 main algorithms:
+We then have the 3 main methods:
 
 `getTopAppsByHost` is O(1) because the top 25 apps are already sorted
 
