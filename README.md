@@ -29,7 +29,7 @@ the algorithm in place can be defined by the following steps:
 
 Overall complexity: O(n log n) †
 
-We then have the 3 main algorithms:
+We then have the 3 main methods:
 
 `getTopAppsByHost` is O(1) because the apps are already sorted
 
